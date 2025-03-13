@@ -1,6 +1,6 @@
 import axios from "axios";
 
-//A simple asynchronous function to check for URL safety via Google Safe Browsing API
+//A simple asynchronous function to check for URL safety via Virus Total API
 async function checkURLSafety(url)
 {
     //API used to check for URL safety
