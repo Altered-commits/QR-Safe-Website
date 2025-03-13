@@ -1,5 +1,5 @@
 {
-  "name": "qr-safe-website",
+  "name": "qr-safe-backend",
   "version": "1.0.0",
   "description": "A simple backend checking if a provided QR is safe to use or not",
   "main": "index.js",
@@ -12,6 +12,7 @@
   "author": "Altered-commits",
   "license": "ISC",
   "dependencies": {
+    "axios": "^1.8.3",
     "cors": "^2.8.5",
     "dotenv": "^16.4.7",
     "express": "^4.21.2",
