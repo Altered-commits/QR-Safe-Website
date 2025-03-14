@@ -1,6 +1,11 @@
 import axios from "axios";
 
-//A simple asynchronous function to check for URL safety via Virus Total API
+/** A simple asynchronous function to check for URL safety via Virus Total API.
+ *  - Returns:
+ *     - On Exception -> { error: error.message }
+ *     - On Success   -> { isCompleted: boolean, isSafe: boolean, details: string | json }
+ *     - On Failure   -> { error: "error_msg" }
+ */
 async function checkURLSafety(url)
 {
     //API used to check for URL safety
@@ -24,9 +29,7 @@ async function checkURLSafety(url)
         //Check if response exists and has a body
         if(!postResponse || !postResponse.data)
             return {
-                response: false,
-                safe: false,
-                details: "No response body from API"
+                error: "No response body from API"
             };
 
         //Get the Analysis ID from the response
@@ -39,21 +42,44 @@ async function checkURLSafety(url)
         
         if(!getResponse || !getResponse.data)
             return {
-                response: false,
-                safe: false,
-                details: "No analysis report from API"
+                error: "No analysis report from API"
             };
 
-        //Otherwise, URL maybe safe, still need to check for the malicious / suspicious flags
+        //But before we even try to get the response, check what the current status is.
+        //Chances are, if its queued, ask the user to wait like few seconds before requerying again
+        const urlStatus = getResponse.data.data.attributes.status;
+        
+        if(urlStatus === "queued")
+            return {
+                isCompleted: false,
+                isSafe: false,
+                details: "Your current request is queued at the server. Wait for few seconds before requerying."
+            };
+
+        //We got what we needed, get the stats and check if URL was flagged for being malicious or suspicious
+        //Even if we get one of this flags, we ask user to be cautious and send the details of the analysis to frontend
+        const urlStats = getResponse.data.data.attributes.stats;
+
+        //Found some malicious content, send the entire url analysis to frontend
+        if(urlStats.malicious > 0 || urlStats.suspicious > 0)
+            return {
+                isCompleted: true,
+                isSafe: false,
+                details: getResponse.data.data.attributes.results
+            };
+        
+        //Otherwise, URL maybe safe, still send the stats so user has some amount of idea
         return {
-            response: true,
-            safe: true,
-            details: `Details: ${JSON.stringify(getResponse.data.data.attributes.stats)}`
+            isCompleted: true,
+            isSafe: true,
+            details: urlStats
         };
     }
     catch(error)
     {
-        throw error.message;
+        return {
+            error: error.message
+        };
     }
 }
 

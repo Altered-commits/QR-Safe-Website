@@ -10,43 +10,28 @@ const apiRoutes = Router();
 //--------------------ROUTES--------------------
 /*
  * POST - /check-url
- * Payload: {url: "some_url"}
- * Response: {safe: boolean, message: "diagnostics_message"}
+ * Request: { url: "some_url" }
+ * Response:
+ *  - On Success: { isCompleted: boolean, isSafe: boolean, details: json }
+ *  - On Failure: { error: "error_msg" }
  */
 apiRoutes.post("/check-url", async (req, res) => {
     const { url } = req.body;
 
     if(!url)
-    {
         return res.status(statusCodes.BAD_REQUEST).json({
-            safe: false,
-            message: "BAD_REQUEST. Request format: { url: 'some_url' }"
+            error: "BAD_REQUEST. Request format: { url: 'some_url' }"
         });
-    }
 
-    //We got the URL, check how safe it is
-    try
-    {
-        const result = await checkURLSafety(url);
+    //We got the URL, the result just send it as the response
+    const result = await checkURLSafety(url);
+    
+    //Decide on which status code to use
+    const statusCode = result.error ? statusCodes.INTERNAL_SERVER_ERROR
+                                    : result.isCompleted ? statusCodes.OK
+                                                         : statusCodes.ACCEPTED;
 
-        return res.status(
-            result.response ? 
-            statusCodes.OK : 
-            statusCodes.INTERNAL_SERVER_ERROR
-        ).json({
-            safe: result.safe,
-            message: result.safe ? 
-                    `OK. URL seems to be safe to use. ${result.details}` :
-                    `ERROR. URL seems to be unsafe to use. Details: ${result.details}`
-        });
-    }
-    catch(error)
-    {
-        return res.status(statusCodes.BAD_REQUEST).json({
-            safe: false,
-            message: `Fetching data error. Error details: ${error}`
-        });
-    }
+    return res.status(statusCode).json(result);
 });
 
 export default apiRoutes;

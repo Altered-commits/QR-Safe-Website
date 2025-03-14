@@ -12,7 +12,7 @@ import statusCodes from "./constants/statusCodes.js";
 //Handles everything
 const app = express();
 
-//Get the port from .env file (or use the default 5000)
+//Get the port from .env file
 const PORT = process.env.PORT;
 
 //--------------------MIDDLEWARE--------------------
@@ -29,10 +29,9 @@ app.get("/", (req, res) => {
 
 //--------------------INVALID ROUTES--------------------
 app.all("*", (req, res) => {
-    //Any other route other than the ones defined above get a bad request error
-    res.status(statusCodes.BAD_REQUEST).json({
-        safe: false,
-        message: "BAD_REQUEST. Invalid route."
+    //Any other route other than the ones defined above gets an error 404
+    res.status(statusCodes.NOT_FOUND).json({
+        error: "ERROR 404. Invalid API route."
     });
 });
 
