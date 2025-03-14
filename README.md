@@ -3,8 +3,8 @@
 ### Frontend is made by my other teammates.
 
 # Routes
-#### 1) POST - /api/check-url
+#### POST - /api/check-url
 - Payload: { url: "some_url" }
-- Response: { safe: boolean, message: "diagnostics_message" }
+- Response: { isCompleted: boolean, isSafe: boolean, details: json }
 
 ### Yeah, that is all. Quite a simple backend for now.
