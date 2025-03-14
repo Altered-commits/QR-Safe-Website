@@ -5,6 +5,7 @@ configDotenv();
 //Node imports
 import express, { json } from "express";
 import cors from "cors";
+import rateLimit from "express-rate-limit";
 //My imports
 import apiRoutes from "./routes/qrSafeApiRoutes.js";
 import statusCodes from "./constants/statusCodes.js";
@@ -16,6 +17,11 @@ const app = express();
 const PORT = process.env.PORT;
 
 //--------------------MIDDLEWARE--------------------
+app.use(rateLimit({
+    windowMs: 5 * 60 * 1000,
+    limit: 30,
+    message: "Too many requests from this IP. please try again after 5 minutes."
+}));             //Rate limited to 30 requests within 5 min frame. Default Status Code: 429
 app.use(json()); //Parse incoming data to JSON
 app.use(cors()); //Enable Cross-Origin Resource Sharing for all routes (for now)
 
