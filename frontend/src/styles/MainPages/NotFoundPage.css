@@ -1,0 +1,18 @@
+.not-found-container {
+    width: 100%;
+    height: 100%;
+
+    padding: 30px;
+}
+
+.not-found-container h1 {
+    font-size: 3.2rem;
+    font-family: Arial, Helvetica, sans-serif;
+    color: white;
+}
+
+.not-found-container p {
+    font-size: large;
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
+}
