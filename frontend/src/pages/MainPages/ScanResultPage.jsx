@@ -3,7 +3,7 @@ import React from 'react';
 //My imports
 import '../../styles/MainPages/ScanResultPage.css';
 
-const ScanResult = ({ scannedData }) => {
+const ScanResultPage = ({ scannedData }) => {
   return (
     <div className="scan-result-container">
       <h1 className="neon-text">Scan Result</h1>
@@ -14,4 +14,4 @@ const ScanResult = ({ scannedData }) => {
   );
 };
 
-export default ScanResult;
+export default ScanResultPage;

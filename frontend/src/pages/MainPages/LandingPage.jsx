@@ -27,7 +27,7 @@ const LandingPage = () => {
 
         <div className="hero-content">
           <h1 className="hero-content-animated-heading">Welcome to QR Safe website</h1>
-          <Link to={"/scanresult"} className="hero-content-start-btn">
+          <Link to={"/startscan"} className="hero-content-start-btn">
             Start Scanning
           </Link>
         </div>

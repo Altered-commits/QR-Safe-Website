@@ -72,7 +72,7 @@ const NotFoundPage = () => {
 					<div className="text-block">
 						<p className="main-message">
 							Your PC ran into a problem and needs to restart.
-							We&apos;re just collecting some error info, and then we&apos;
+							We&apos;re just collecting some error info, and then we&apos;ll
 							restart for you.
 						</p>
 						<p className="sub-message percentage">0% complete</p>

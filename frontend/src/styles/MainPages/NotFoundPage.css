@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap');
+
 .not-found-container {
 	height: 100dvh;
 	width: 100%;
@@ -50,12 +52,16 @@
 /* Loading indicator styles */
 .loading-indicator {
   text-align: center;
+	
+	font-family: "Nunito", sans-serif;
+	font-size: x-large;
+
   color: #ffffff;
 }
 
 .spinner {
-  width: 40px;
-  height: 40px;
+  width: 50px;
+  height: 50px;
 
   border: 4px solid rgba(255, 255, 255, 0.3);
   border-top: 4px solid #ffffff;
@@ -63,7 +69,7 @@
 
   margin: 0 auto 20px;
 	
-  animation: spin 1s linear infinite;
+  animation: spin 1s linear 4.34 forwards;
 }
 
 @keyframes spin {
@@ -79,6 +85,7 @@
   flex-direction: column;
 
 	cursor: none;
+	letter-spacing: 0.4px;
 
 	overflow: hidden;
 }
@@ -96,7 +103,7 @@
 }
 
 .sad-face {
-  font-size: 9rem;
+  font-size: max(7.5vw, 13vh, 9rem);
   font-weight: 300;
 }
 
@@ -105,12 +112,12 @@
 }
 
 .main-message {
-  font-size: 28px;
-	max-width: 44%;
+  font-size: max(1.45vw, 2.6vh, 28px);
+	max-width: 45%;
 }
 
 .percentage {
-	font-size: 28px;
+	font-size: max(1.45vw, 2.6vh, 28px);
 	margin-top: 30px;
 }
 
@@ -121,8 +128,8 @@
 }
 
 .bsod-qr-code {
-  width: 140px;
-  height: 140px;
+  width: max(7.3vw, 13vh, 140px);
+  height: max(7.3vw, 13vh, 140px);
   margin-right: 20px;
 
 	mix-blend-mode: screen;
@@ -133,16 +140,16 @@
   flex-direction: column;
   justify-content: space-between;
 
-	height: 140px;
+	height: max(7.3vw, 13vh, 140px);
 }
 
 .info {
-  font-size: 16px;
+  font-size: max(0.83vw, 1.5vh, 16px);
   margin: 0 0 10px 0;
 }
 
 .stop-code {
-  font-size: 16px;
+  font-size: max(0.83vw, 1.5vh, 16px);
   margin: 0;
 }
 
