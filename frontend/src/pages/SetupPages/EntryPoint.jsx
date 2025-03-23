@@ -2,10 +2,11 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 //My imports
-import LandingPage from "../MainPages/LandingPage";
-import ScanStartPage from "../MainPages/ScanStartPage";
-import ScanResultPage from "../MainPages/ScanResultPage";
-import NotFoundPage from "../MainPages/NotFoundPage";
+import LandingPage from "../MainPages/LandingPage/LandingPage";
+import ScanStartPage from "../MainPages/ScanStartPage/ScanStartPage";
+import ScanResultPage from "../MainPages/ScanResultPage/ScanResultPage";
+import NotFoundPage from "../MainPages/NotFoundPage/NotFoundPage";
+import AboutUsPage from "../MainPages/AboutUsPage/AboutUsPage";
 import QRSafeLayout from "./Layout";
 
 const EntryPoint = () => {
@@ -14,8 +15,9 @@ const EntryPoint = () => {
       <Routes>
         <Route path="/" element={<QRSafeLayout />}>
           <Route index element={<LandingPage />} />
-          <Route path="startscan" element={<ScanStartPage/>}/>
-          <Route path="scanresult" element={<ScanResultPage />} />
+          <Route path="about-us" element={<AboutUsPage />} />
+          <Route path="start-scan" element={<ScanStartPage/>}/>
+          <Route path="scan-result" element={<ScanResultPage />} />
           <Route path="*" element={<NotFoundPage />} /> 
         </Route>
       </Routes>

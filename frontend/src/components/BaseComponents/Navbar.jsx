@@ -1,8 +1,10 @@
 //React imports
 import { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, Link } from "react-router-dom";
 //My imports
-import "../../styles/BaseComponents/Navbar.css";
+import "./Navbar.css";
+
+/* TODO: FIX THE NAVBAR SCROLLING EFFECT BUG. ITS NOT WORKING. */
 
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
@@ -23,7 +25,9 @@ const Navbar = () => {
     <header className={`navbar ${scrolled ? "scrolled" : isLandingPage ? "transparent" : "visible"}`}>
       <div className="logo">QR Safe</div>
       <nav className="nav-links">
-        <a href="#scan-result" className="scan-result-btn">Scan Result</a>
+        <Link to={"/about-us"} className="about-us-btn">
+          About us
+        </Link>
       </nav>
     </header>
   );

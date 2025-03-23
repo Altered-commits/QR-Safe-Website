@@ -1,0 +1,11 @@
+.landscape-page {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* Ensure the Three.js canvas fills the container */
+.landscape-page canvas {
+  display: block;
+}
